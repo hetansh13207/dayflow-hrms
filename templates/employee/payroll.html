@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>My Payroll</h2>
+
+{% if profile and profile.salary %}
+    <p><strong>Monthly Salary:</strong> ₹ {{ profile.salary }}</p>
+{% else %}
+    <p>Salary information not available.</p>
+{% endif %}
+{% endblock %}

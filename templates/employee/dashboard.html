@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Employee Dashboard</h2>
+
+<div class="dashboard">
+    <a href="{{ url_for('employee_profile') }}" class="card">
+        <h3>My Profile</h3>
+        <p>View and update your personal details</p>
+    </a>
+
+    <a href="{{ url_for('employee_attendance') }}" class="card">
+        <h3>Attendance</h3>
+        <p>Check-in / Check-out</p>
+    </a>
+
+    <a href="{{ url_for('employee_leave') }}" class="card">
+        <h3>Leave</h3>
+        <p>Apply and track leave requests</p>
+    </a>
+
+    <a href="{{ url_for('employee_payroll') }}" class="card">
+        <h3>Payroll</h3>
+        <p>View salary details</p>
+    </a>
+</div>
+
+{% endblock %}

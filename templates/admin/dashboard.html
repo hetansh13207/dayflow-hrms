@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Admin Dashboard</h2>
+
+<div class="dashboard">
+    <a href="{{ url_for('admin_employees') }}" class="card">
+        <h3>Employees</h3>
+        <p>Manage employee records</p>
+    </a>
+
+    <a href="{{ url_for('admin_attendance') }}" class="card">
+        <h3>Attendance</h3>
+        <p>View attendance records</p>
+    </a>
+
+    <a href="{{ url_for('admin_leaves') }}" class="card">
+        <h3>Leave Requests</h3>
+        <p>Approve or reject leaves</p>
+    </a>
+
+    <a href="{{ url_for('admin_payroll') }}" class="card">
+        <h3>Payroll</h3>
+        <p>Manage salary details</p>
+    </a>
+</div>
+
+{% endblock %}

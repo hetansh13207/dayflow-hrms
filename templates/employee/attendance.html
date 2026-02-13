@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="attendance-page">
+<h2>My Attendance</h2>
+
+{% if not today_record or not today_record.check_in %}
+    <a href="{{ url_for('employee_checkin') }}">Check In</a>
+{% elif not today_record.check_out %}
+    <a href="{{ url_for('employee_checkout') }}">Check Out</a>
+{% else %}
+    <p>Attendance completed for today</p>
+{% endif %}
+
+</div>
+<div class="table-scroll">
+<table border="1">
+    <tr>
+        <th>Date</th>
+        <th>Check In</th>
+        <th>Check Out</th>
+        <th>Status</th>
+    </tr>
+
+    {% for r in records %}
+<tr>
+    <td>{{ r.date.strftime("%d-%m-%y") }}</td>
+    <td>{{ r.check_in.strftime("%I:%M %p") if r.check_in else "" }}</td>
+    <td>{{ r.check_out.strftime("%I:%M %p") if r.check_out else "" }}</td>
+    <td>{{ r.status }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+</div>
+
+{% endblock %}
+

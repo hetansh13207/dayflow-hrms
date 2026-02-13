@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+<div class="attendance-page">
+{% block content %}
+<style>
+.attendance-page table th,
+.attendance-page table td {
+    padding: 2px 2px !important;
+    font-size: 4px !important;
+}
+</style>
+<h2>All Attendance</h2>
+
+<table border="1">
+    <tr>
+        <th>Employee ID</th>
+        <th>Date</th>
+        <th>Check In</th>
+        <th>Check Out</th>
+        <th>Status</th>
+    </tr>
+
+    {% for r in records %}
+<tr>
+    <td>{{ r.user.employee_id }}</td>
+
+    <td>{{ r.date.strftime("%d-%m-%y") }}</td>
+
+    <td>{{ r.check_in.strftime("%I:%M %p") if r.check_in else "" }}</td>
+
+    <td>{{ r.check_out.strftime("%I:%M %p") if r.check_out else "" }}</td>
+
+    <td>{{ r.status }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+</div>
+{% endblock %}

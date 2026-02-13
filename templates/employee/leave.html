@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="leave-employee-page"> 
+<h2>Apply for Leave</h2>
+
+<form method="post">
+    <select name="leave_type" required>
+        <option value="">Select Leave Type</option>
+        <option value="Paid">Paid</option>
+        <option value="Sick">Sick</option>
+        <option value="Unpaid">Unpaid</option>
+    </select><br><br>
+
+    <input type="date" name="start_date" placeholder="Start Date"   onfocus="(this.type='date')" onblur="(this.type='text')" required><br><br>
+    <input type="date" name="end_date"  placeholder="End Date"  onfocus="(this.type='date')" onblur="(this.type='text')" required><br><br>
+
+    <textarea name="reason" placeholder="Reason" required></textarea><br><br>
+
+    <button type="submit">Apply</button>
+    <br>
+</form>
+</div>
+<hr>
+
+<h3>My Leave Requests</h3>
+
+<div class="table-scroll">
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Dates</th>
+            <th>Status</th>
+            <th>Admin Comment</th>
+        </tr>
+
+        {% for l in leaves %}
+        <tr>
+            <td>{{ l.leave_type }}</td>
+            <td>{{ l.start_date }} → {{ l.end_date }}</td>
+            <td>{{ l.status }}</td>
+            <td>{{ l.admin_comment or '' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

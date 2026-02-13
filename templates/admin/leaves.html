@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="leave-admin-page">
+<h2>Leave Requests</h2>
+
+<table border="1">
+    <tr>
+        <th>Employee ID</th>
+        <th>Type</th>
+        <th>Dates</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for l in leaves %}
+    <tr>
+        <td>{{ l.user.employee_id }}</td>
+        <td>{{ l.leave_type }}</td>
+        <td>
+  {{ l.start_date.strftime("%d-%m-%y") }} →
+  {{ l.end_date.strftime("%d-%m-%y") }}
+</td>
+
+        <td>{{ l.status }}</td>
+        <td>
+            <a href="{{ url_for('admin_leave_action', leave_id=l.id) }}">Review</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

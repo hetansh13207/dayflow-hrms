@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- theme preload -->
+    <script>
+    if (localStorage.getItem("theme") === "light") {
+        document.documentElement.classList.add("light-theme");
+    }
+    </script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+    <h2>Dayflow HRMS</h2>
+
+   <div class="nav-right">
+
+    {% if current_user.is_authenticated %}
+    <ul class="nav-actions">
+        {% if current_user.role == "ADMIN" %}
+        <li>
+            <a href="{{ url_for('admin_dashboard') }}"
+               class="nav-btn nav-dashboard">Dashboard</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{{ url_for('employee_dashboard') }}"
+               class="nav-btn nav-dashboard">Dashboard</a>
+        </li>
+        {% endif %}
+
+        <li>
+            <a href="{{ url_for('logout') }}"
+               class="nav-btn nav-logout">Logout</a>
+        </li>
+            
+    </ul>
+    
+    {% endif %}
+    <span><button class="theme-toggle theme-toggle-nav">🌙</button></span>
+    <!-- ✅ ALWAYS VISIBLE -->
+    
+
+</div>
+
+        </nav>
+    
+<!-- ================= CONTENT ================= -->
+<div class="container">
+        {% with messages = get_flashed_messages(with_categories=false) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="flash-message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    {% block content %}{% endblock %}
+</div>
+
+<button class="theme-toggle theme-toggle-float">🌙</button>
+
+<footer class="app-footer">
+  <p>Cooked By
+      <a href="https://www.linkedin.com/in/hetansh-darji-603b72263" target="_blank">Hetansh</a>
+      &
+  <a href="https://www.linkedin.com/in/krish-mahyavanshi-1651421b5" target="_blank">Krizh</a>
+  </p> 
+
+</footer>
+
+</body>
+<script src="/static/script.js"></script>
+</html>

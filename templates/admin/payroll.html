@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="payroll-page">
+<h2>Payroll Overview</h2>
+
+<table border="1">
+    <tr>
+        <th>Employee ID</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>Action</th>
+    </tr>
+
+    {% for emp in employees %}
+    <tr>
+        <td>{{ emp.employee_id }}</td>
+        <td>{{ emp.email }}</td>
+        <td>
+            {{ emp.profile.salary if emp.profile and emp.profile.salary else "Not Set" }}
+        </td>
+        <td>
+            <a href="{{ url_for('admin_edit_employee', user_id=emp.id) }}">
+                Edit Salary
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

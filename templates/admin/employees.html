@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Employees</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Employee ID</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+
+    {% for emp in employees %}
+    <tr>
+        <td>{{ emp.employee_id }}</td>
+        <td>{{ emp.email }}</td>
+        <td>
+            <a href="{{ url_for('admin_edit_employee', user_id=emp.id) }}">Edit</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

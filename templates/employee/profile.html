@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-employee"> 
+<h2>My Profile</h2>
+
+<p><strong>Name:</strong> {{ profile.full_name if profile else "" }}</p>
+<br>
+<p><strong>Phone:</strong> {{ profile.phone if profile else "" }}</p>
+<br>
+<p><strong>Address:</strong> {{ profile.address if profile else "" }}</p>
+<br>
+
+<a href="{{ url_for('edit_employee_profile') }}">Edit Profile</a>
+</div>
+{% endblock %}

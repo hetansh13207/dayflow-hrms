@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Leave Review</h2>
+
+<p><strong>Employee:</strong> {{ leave.user.employee_id }}</p>
+<p><strong>Type:</strong> {{ leave.leave_type }}</p>
+<p><strong>Dates:</strong> {{ leave.start_date }} → {{ leave.end_date }}</p>
+<br>
+<p><strong>Reason:</strong> {{ leave.reason }}</p>
+<br>
+<form method="post">
+    <select name="status" required>
+        <option value="Approved">Approve</option>
+        <option value="Rejected">Reject</option>
+    </select><br><br>
+
+    <textarea name="admin_comment" placeholder="Comment">{{ leave.admin_comment or '' }}</textarea><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
